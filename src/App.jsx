@@ -1,0 +1,21 @@
+import React from "react";
+import Entry from "./Entry/Entry";
+import { Switch, Route } from "react-router-dom";
+import Chat from "./Chat/Chat";
+
+function App() {
+  return (
+    <>
+      <Switch>
+        <Route path="/chat">
+          <Chat />
+        </Route>
+        <Route path="/">
+          <Entry />
+        </Route>
+      </Switch>
+    </>
+  );
+}
+
+export default App;
