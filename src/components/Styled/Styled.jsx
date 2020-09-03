@@ -44,6 +44,7 @@ export const StyledInput = styled.input`
   height: 3em;
   margin-left: 3em;
   margin-top: 3em;
+  margin-bottom: ${({ chat }) => (chat ? "2em" : null)}
 `;
 
 export const StyledNavbar = styled.div`
@@ -112,8 +113,9 @@ export const StyledCard = styled.div`
 `;
 export const StyledSector = styled.div`
   display: grid;
-  grid-gap: 5px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-areas: 
+    "header footer";
 `;
 
 export const StyledContainer = styled.div`

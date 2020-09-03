@@ -6,6 +6,7 @@ import Navigation from "../Navigation/Navigation";
 import Messagetable from "../Messagetable/Messagetable";
 import { StyledChat } from "../Styled/Styled";
 import Info from "../Info/Info";
+import Inputfield from "../Inputfield/Inputfield";
 
 let socket;
 
@@ -55,6 +56,7 @@ function Chat() {
       <StyledChat>
         <Info room={room}/>
         <Messagetable messages={messages} name={name} />
+        <Inputfield message={message} setMessage={setMessage} sendMessage={sendMessage}/>
       </StyledChat>
     </>
   );
