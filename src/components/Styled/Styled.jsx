@@ -21,6 +21,7 @@ export const StyledButton = styled.button`
   margin-left: 1em;
   margin-top: 2em;
   margin-bottom: 1em;
+  
   &:hover {
     background: linear-gradient(to bottom, #f2ab1e 5%, #aed9e3 100%);
     background-color: "#ffd6ba"};
@@ -96,9 +97,9 @@ export const StyledCard = styled.div`
     "aside footer";
   justify-items: center;
   -webkit-box-shadow: inset -1px 3px 8px 5px #1f87ff, 2px 5px 16px 0px #0b325e,
-    -3px 5px 6px 9px rgba(0, 0, 0, 0);
+  -3px 5px 6px 9px rgba(0, 0, 0, 0);
   box-shadow: inset -1px 3px 8px 5px #1f87ff, 2px 5px 16px 0px #0b325e,
-    -3px 5px 6px 9px rgba(0, 0, 0, 0);
+  -3px 5px 6px 9px rgba(0, 0, 0, 0);
   background: #f7ede2;
   min-width: 20%;
   max-width: 10em;
@@ -106,8 +107,9 @@ export const StyledCard = styled.div`
   margin-left: 5%;
   margin-top: 5%;
   font-size: 29px;
-
+  
   div {
+    align-items: center;
     font-size: 22px;
   }
 `;
@@ -125,12 +127,12 @@ export const StyledContainer = styled.div`
   background: #95d5b2;
   border-radius: 4px 4px 0 0;
   height: 60px;
-  width: 100%;
+  width: ${({ who }) => (who ? '35%' : '100%')};
   div {
     flex: 0.5;
     display: flex;
     align-items: center;
-    margin-left:${({ right }) => (right ? '60%' : '5%')};;
+    margin-left:${({ right }) => (right ? '60%' : '5%')};
     color: white;
     justify-content: ${({ right }) => (right ? "flex-end" : null)};
     margin-right: ${({ right }) => (right ? "5%" : null)};
@@ -153,6 +155,7 @@ export const StyledChat = styled.div`
   border-radius: 8px;
   height: 60%;
   width: 35%;
+  
 
   @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;

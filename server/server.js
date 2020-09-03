@@ -11,6 +11,8 @@ const io = ioNew(http);
 
 const PORT = process.env.PORT || "4444";
 
+const users = {};
+
 io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room });
@@ -43,6 +45,25 @@ io.on('connect', (socket) => {
       io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
     }
   })
+  if (!users[socket.id]) {
+    users[socket.id] = socket.id;
+  }
+  socket.emit("yourID", socket.id);
+  io.sockets.emit("allUsers", users);
+  socket.on("disconnect", () => {
+    delete users[socket.id];
+  });
+
+  socket.on("callUser", (data) => {
+    io.to(data.userToCall).emit("hey", {
+      signal: data.signalData,
+      from: data.from,
+    });
+  });
+
+  socket.on("acceptCall", (data) => {
+    io.to(data.to).emit("callAccepted", data.signal);
+  });
 });
 
 async function start() {

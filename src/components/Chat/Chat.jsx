@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 
-import Navigation from "../Navigation/Navigation";
+
 import Messagetable from "../Messagetable/Messagetable";
-import { StyledChat } from "../Styled/Styled";
+import { StyledChat,NavLink, StyledButton, StyledCard, StyledContainer } from "../Styled/Styled";
 import Info from "../Info/Info";
 import Inputfield from "../Inputfield/Inputfield";
 
@@ -17,6 +17,7 @@ function Chat() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
+  console.log(users);
   const server = "http://localhost:4444";
 
   useEffect(() => {
@@ -52,12 +53,25 @@ function Chat() {
 
   return (
     <>
-      <Navigation names={["chat", "rooms", "about"]} />
       <StyledChat>
-        <Info room={room}/>
+        <Info room={room} />
         <Messagetable messages={messages} name={name} />
-        <Inputfield message={message} setMessage={setMessage} sendMessage={sendMessage}/>
+        <Inputfield
+          message={message}
+          setMessage={setMessage}
+          sendMessage={sendMessage}
+        />
+      <NavLink
+          onClick={(e) => (!name || !room ? e.preventDefault() : null)}
+          to={`/video?name=${name}&room=${room}`}
+        >
+          <StyledButton primary>Go video Chat</StyledButton>
+        </NavLink>
       </StyledChat>
+      <StyledContainer who> <div>In {room}:
+      {users && users.map((user)=>(`${user.name}, `))}
+        </div> 
+      </StyledContainer>
     </>
   );
 }

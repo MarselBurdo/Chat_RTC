@@ -1,13 +1,22 @@
-import React from 'react'
-import ScrollToBottom from 'react-scroll-to-bottom';
+import React from "react";
+import ScrollToBottom from "react-scroll-to-bottom";
+import { css } from 'emotion';
 
-function Messagetable({messages, name}) {
-  
+const ROOT_CSS = css({ 
+  height: 450,
+  });
+
+function Messagetable({ messages, name }) {
   return (
-    <ScrollToBottom>
-{messages.map((message, i) => <div key={i}>{message.text} {message.user}</div>)}
+    <ScrollToBottom className={ROOT_CSS}>
+      {messages.map((message, i) => (
+        <div key={i} style={{ fontSize: "13px" }}>
+          {message.text} write--> {name}
+        </div>
+      ))}
     </ScrollToBottom>
-  )
+    
+  );
 }
 
-export default Messagetable
+export default Messagetable;

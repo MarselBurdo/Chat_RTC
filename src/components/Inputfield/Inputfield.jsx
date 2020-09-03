@@ -17,7 +17,7 @@ function Inputfield({ setMessage, sendMessage, message }) {
           }
         />
 
-        <StyledButton onClick={(e) => sendMessage(e)}>Write</StyledButton>
+        <StyledButton primary onClick={(e) => sendMessage(e)}>Write</StyledButton>
       </StyledSector>
     </>
   );
