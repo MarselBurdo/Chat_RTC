@@ -7,12 +7,12 @@ import {
   NavLink,
 } from "../Styled/Styled";
 
-const rooms = ["JavaScript", "Go", "Kotlin", "Java", "C#"];
+const rooms = ["JavaScript", "Go", "Kotlin", "Java", "C", "PHP"];
 
 function Entry() {
   const [room, setRoom] = useState(" ");
   const [name, setName] = useState("");
-  console.log(room, name);
+  
   return (
     <>
       <StyledCard>

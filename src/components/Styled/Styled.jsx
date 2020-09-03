@@ -23,7 +23,7 @@ export const StyledButton = styled.button`
   margin-bottom: 1em;
   &:hover {
     background: linear-gradient(to bottom, #f2ab1e 5%, #aed9e3 100%);
-    background-color: ${({ primary }) => (primary ? "#9e2a2b" : "#ffd6ba")};
+    background-color: "#ffd6ba"};
   }
   &:active {
     position: relative;
@@ -117,10 +117,49 @@ export const StyledSector = styled.div`
 `;
 
 export const StyledContainer = styled.div`
-  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #95d5b2;
+  border-radius: 4px 4px 0 0;
+  height: 60px;
   width: 100%;
+  div {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    margin-left:${({ right }) => (right ? '60%' : '5%')};;
+    color: white;
+    justify-content: ${({ right }) => (right ? "flex-end" : null)};
+    margin-right: ${({ right }) => (right ? "5%" : null)};
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: #ffd6ba;
+      }
+    }
+  }
+`;
+
+export const StyledChat = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  background: #deab90;
+  border-radius: 8px;
+  height: 60%;
+  width: 35%;
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 480px) and (max-width: 1200px) {
+    width: 60%;
+  }
 `;
 
 export const StyledRow = styled.div`

@@ -1,17 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-
-
-// import Mainlayout from "./Mainlayout/Mainlayout";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+
+import App from "./App";
+import GlobalStyle from "./components/Styled/Theme";
+
+const theme = {};
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    {/* <Mainlayout> */}
-      <App />
-    {/* </Mainlayout> */}
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
