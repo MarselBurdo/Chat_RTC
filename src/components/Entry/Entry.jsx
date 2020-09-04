@@ -7,12 +7,12 @@ import {
   NavLink,
 } from "../Styled/Styled";
 
-const rooms = ["JavaScript", "Go", "Kotlin", "Java", "C#"];
+const rooms = ["JavaScript", "Go", "Kotlin", "Java", "C", "PHP"];
 
 function Entry() {
   const [room, setRoom] = useState(" ");
   const [name, setName] = useState("");
-  console.log(room, name);
+  
   return (
     <>
       <StyledCard>
@@ -22,7 +22,7 @@ function Entry() {
           className="aside"
           onChange={(e) => setRoom(e.target.value)}
         >
-          <option value="default"></option>
+          <option hidden selected>Choise room</option>
           {rooms.map((element, i) => (
             <option value={`${element}`} key={i}>
               {element}

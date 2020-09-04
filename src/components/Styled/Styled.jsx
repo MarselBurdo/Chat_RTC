@@ -21,9 +21,10 @@ export const StyledButton = styled.button`
   margin-left: 1em;
   margin-top: 2em;
   margin-bottom: 1em;
+  
   &:hover {
     background: linear-gradient(to bottom, #f2ab1e 5%, #aed9e3 100%);
-    background-color: ${({ primary }) => (primary ? "#9e2a2b" : "#ffd6ba")};
+    background-color: "#ffd6ba"};
   }
   &:active {
     position: relative;
@@ -44,6 +45,7 @@ export const StyledInput = styled.input`
   height: 3em;
   margin-left: 3em;
   margin-top: 3em;
+  margin-bottom: ${({ chat }) => (chat ? "2em" : null)}
 `;
 
 export const StyledNavbar = styled.div`
@@ -95,9 +97,9 @@ export const StyledCard = styled.div`
     "aside footer";
   justify-items: center;
   -webkit-box-shadow: inset -1px 3px 8px 5px #1f87ff, 2px 5px 16px 0px #0b325e,
-    -3px 5px 6px 9px rgba(0, 0, 0, 0);
+  -3px 5px 6px 9px rgba(0, 0, 0, 0);
   box-shadow: inset -1px 3px 8px 5px #1f87ff, 2px 5px 16px 0px #0b325e,
-    -3px 5px 6px 9px rgba(0, 0, 0, 0);
+  -3px 5px 6px 9px rgba(0, 0, 0, 0);
   background: #f7ede2;
   min-width: 20%;
   max-width: 10em;
@@ -105,22 +107,65 @@ export const StyledCard = styled.div`
   margin-left: 5%;
   margin-top: 5%;
   font-size: 29px;
-
+  
   div {
+    align-items: center;
     font-size: 22px;
   }
 `;
 export const StyledSector = styled.div`
   display: grid;
-  grid-gap: 5px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-areas: 
+    "header footer";
 `;
 
 export const StyledContainer = styled.div`
-  height: 100vh;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #95d5b2;
+  border-radius: 4px 4px 0 0;
+  height: 60px;
+  width: ${({ who }) => (who ? '35%' : '100%')};
+  margin: auto;
+  div {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    margin-left:${({ right }) => (right ? '60%' : '5%')};
+    color: white;
+    justify-content: ${({ right }) => (right ? "flex-end" : null)};
+    margin-right: ${({ right }) => (right ? "5%" : null)};
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: #ffd6ba;
+      }
+    }
+  }
+`;
+
+export const StyledChat = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  background: #deab90;
+  border-radius: 8px;
+  height: 60%;
+  width: 35%;
+  margin: auto;
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 480px) and (max-width: 1200px) {
+    width: 60%;
+  }
 `;
 
 export const StyledRow = styled.div`
