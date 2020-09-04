@@ -128,6 +128,7 @@ export const StyledContainer = styled.div`
   border-radius: 4px 4px 0 0;
   height: 60px;
   width: ${({ who }) => (who ? '35%' : '100%')};
+  margin: auto;
   div {
     flex: 0.5;
     display: flex;
@@ -155,8 +156,8 @@ export const StyledChat = styled.div`
   border-radius: 8px;
   height: 60%;
   width: 35%;
+  margin: auto;
   
-
   @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;
     height: 100%;

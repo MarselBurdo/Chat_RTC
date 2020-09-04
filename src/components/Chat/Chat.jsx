@@ -4,7 +4,7 @@ import io from "socket.io-client";
 
 
 import Messagetable from "../Messagetable/Messagetable";
-import { StyledChat,NavLink, StyledButton, StyledCard, StyledContainer } from "../Styled/Styled";
+import { StyledChat,NavLink, StyledButton, StyledContainer } from "../Styled/Styled";
 import Info from "../Info/Info";
 import Inputfield from "../Inputfield/Inputfield";
 
@@ -17,7 +17,7 @@ function Chat() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  console.log(users);
+ 
   const server = "http://localhost:4444";
 
   useEffect(() => {
@@ -68,7 +68,7 @@ function Chat() {
           <StyledButton primary>Go video Chat</StyledButton>
         </NavLink>
       </StyledChat>
-      <StyledContainer who> <div>In {room}:
+      <StyledContainer who> <div>In {room} room:
       {users && users.map((user)=>(`${user.name}, `))}
         </div> 
       </StyledContainer>
