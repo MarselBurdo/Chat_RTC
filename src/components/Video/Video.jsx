@@ -3,12 +3,9 @@ import io from "socket.io-client";
 import queryString from "query-string";
 import Peer from "simple-peer";
 
-import { StyledVideo, StyledRow} from "../Styled/Styled";
-
-
+import { StyledVideo, StyledRow } from "../Styled/Styled";
 
 function Video() {
-  
   const [room, setRoom] = useState("");
   const [yourID, setYourID] = useState("");
   const [users, setUsers] = useState({});
@@ -28,12 +25,11 @@ function Video() {
     const { name, room } = queryString.parse(window.location.search);
     setYourID(name);
     setRoom(room);
-    
-    socket.current = io(server);
 
+    socket.current = io(server);
   }, [server, window.location.search]);
 
-  useEffect(()=>{
+  useEffect(() => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
@@ -55,7 +51,7 @@ function Video() {
       setCaller(data.from);
       setCallerSignal(data.signal);
     });
-  },[])
+  }, []);
 
   function callPeer(id) {
     const peer = new Peer({
@@ -108,7 +104,7 @@ function Video() {
     UserVideo = <StyledVideo playsInline muted ref={userVideo} autoPlay />;
   }
 
-  let PartnerVideo;
+  let ;
   if (callAccepted) {
     PartnerVideo = <StyledVideo playsInline ref={partnerVideo} autoPlay />;
   }
@@ -126,22 +122,18 @@ function Video() {
     <>
       <h1>video</h1>
       <div>
-
-      <StyledRow>
-        {UserVideo}
-        {PartnerVideo}
-      </StyledRow>
-      <StyledRow>
-        {Object.keys(users).map((key) => {
-          if (key === yourID) {
-            return null;
-          }
-          return <button onClick={() => callPeer(key)}>Call {key}</button>;
-        })}
-      </StyledRow>
-      <StyledRow>{incomingCall}</StyledRow>
+        <StyledRow>{UserVideo}</StyledRow>
+        <StyledRow>{PartnerVideo}</StyledRow>
+        <StyledRow>
+          {Object.keys(users).map((key) => {
+            if (key === yourID) {
+              return null;
+            }
+            return <button onClick={() => callPeer(key)}>Call {key}</button>;
+          })}
+        </StyledRow>
+        <StyledRow>{incomingCall}</StyledRow>
       </div>
-    
     </>
   );
 }

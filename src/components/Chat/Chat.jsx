@@ -7,12 +7,14 @@ import Messagetable from "../Messagetable/Messagetable";
 import { StyledChat,NavLink, StyledButton, StyledContainer } from "../Styled/Styled";
 import Info from "../Info/Info";
 import Inputfield from "../Inputfield/Inputfield";
+import { useSelector } from "react-redux";
 
 let socket;
 
 function Chat() {
-  const [name, setName] = useState("");
+  const name = useSelector(state=>state.action.name)
   const [room, setRoom] = useState("");
+  const [id, setId] = useState("");
   const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -21,8 +23,8 @@ function Chat() {
   const server = "http://localhost:4444";
 
   useEffect(() => {
-    const { name, room } = queryString.parse(window.location.search);
-    setName(name);
+    const { id,room } = queryString.parse(window.location.search);
+    setId(id);
     setRoom(room);
     socket = io(server);
 
@@ -63,7 +65,7 @@ function Chat() {
         />
       <NavLink
           onClick={(e) => (!name || !room ? e.preventDefault() : null)}
-          to={`/video?name=${name}&room=${room}`}
+          to={`/video?id=${name}&room=${room}`}
         >
           <StyledButton primary>Go video Chat</StyledButton>
         </NavLink>
