@@ -104,7 +104,7 @@ function Video() {
     UserVideo = <StyledVideo playsInline muted ref={userVideo} autoPlay />;
   }
 
-  let ;
+  let PartnerVideo ;
   if (callAccepted) {
     PartnerVideo = <StyledVideo playsInline ref={partnerVideo} autoPlay />;
   }
