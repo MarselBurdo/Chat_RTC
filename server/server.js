@@ -11,6 +11,7 @@ const io = ioNew(http);
 
 const PORT = process.env.PORT || "4444";
 
+//socket connection
 const users = {};
 
 io.on('connect', (socket) => {
@@ -32,7 +33,7 @@ io.on('connect', (socket) => {
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
 
-    io.to(user.room).emit('message', { user: user.name, text: message });
+    io.to(user.room).emit('message', { user: user.name, text: message, date: Date.now()});
 
     callback();
   });
@@ -45,8 +46,11 @@ io.on('connect', (socket) => {
       io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
     }
   })
+
+  //video socket connection
   if (!users[socket.id]) {
     users[socket.id] = socket.id;
+    
   }
   socket.emit("yourID", socket.id);
   io.sockets.emit("allUsers", users);
@@ -58,7 +62,7 @@ io.on('connect', (socket) => {
     io.to(data.userToCall).emit("hey", {
       signal: data.signalData,
       from: data.from,
-    });
+      });
   });
 
   socket.on("acceptCall", (data) => {

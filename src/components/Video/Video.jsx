@@ -5,7 +5,10 @@ import Peer from "simple-peer";
 
 import { StyledVideo, StyledRow } from "../Styled/Styled";
 
+//video chat components
+
 function Video() {
+  const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [yourID, setYourID] = useState("");
   const [users, setUsers] = useState({});
@@ -19,11 +22,12 @@ function Video() {
   const partnerVideo = useRef();
   const socket = useRef();
 
-  const server = "http://localhost:4444";
+  const server = "http://localhost:4444"; //"https://tatarchatserver.herokuapp.com/"; //server
 
   useEffect(() => {
+    // take name & room
     const { name, room } = queryString.parse(window.location.search);
-    setYourID(name);
+    setName(name);
     setRoom(room);
 
     socket.current = io(server);
@@ -48,7 +52,7 @@ function Video() {
 
     socket.current.on("hey", (data) => {
       setReceivingCall(true);
-      setCaller(data.from);
+      setCaller(data.name);
       setCallerSignal(data.signal);
     });
   }, []);
@@ -65,6 +69,7 @@ function Video() {
         userToCall: id,
         signalData: data,
         from: yourID,
+        name: name,
       });
     });
 
@@ -104,7 +109,7 @@ function Video() {
     UserVideo = <StyledVideo playsInline muted ref={userVideo} autoPlay />;
   }
 
-  let PartnerVideo ;
+  let PartnerVideo;
   if (callAccepted) {
     PartnerVideo = <StyledVideo playsInline ref={partnerVideo} autoPlay />;
   }
@@ -129,7 +134,11 @@ function Video() {
             if (key === yourID) {
               return null;
             }
-            return <button onClick={() => callPeer(key)}>Call {key}</button>;
+            return (
+              <button onClick={() => callPeer(key)}>
+                Hi {name}, call friend
+              </button>
+            );
           })}
         </StyledRow>
         <StyledRow>{incomingCall}</StyledRow>

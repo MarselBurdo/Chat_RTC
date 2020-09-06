@@ -1,3 +1,5 @@
+//users add, remove, get function here. This function to text chat
+
 const users = [];
 
 export const addUser = ({ id, name, room }) => {

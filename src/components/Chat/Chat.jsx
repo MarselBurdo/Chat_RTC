@@ -2,29 +2,30 @@ import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 
-
 import Messagetable from "../Messagetable/Messagetable";
-import { StyledChat,NavLink, StyledButton, StyledContainer } from "../Styled/Styled";
+import {
+  StyledChat,
+  NavLink,
+  StyledButton,
+  StyledContainer,
+} from "../Styled/Styled";
 import Info from "../Info/Info";
 import Inputfield from "../Inputfield/Inputfield";
-import { useSelector } from "react-redux";
 
 let socket;
-
+// text chat
 function Chat() {
-  const name = useSelector(state=>state.action.name)
   const [room, setRoom] = useState("");
-  const [id, setId] = useState("");
+  const [name, setName] = useState("");
   const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
- 
-  const server = "http://localhost:4444";
+  const server = "http://localhost:4444"; //"https://tatarchatserver.herokuapp.com/"; //server
 
   useEffect(() => {
-    const { id,room } = queryString.parse(window.location.search);
-    setId(id);
+    const { name, room } = queryString.parse(window.location.search);
+    setName(name);
     setRoom(room);
     socket = io(server);
 
@@ -57,22 +58,25 @@ function Chat() {
     <>
       <StyledChat>
         <Info room={room} />
-        <Messagetable messages={messages} name={name} />
+        <Messagetable messages={messages} />
         <Inputfield
           message={message}
           setMessage={setMessage}
           sendMessage={sendMessage}
         />
-      <NavLink
+        <NavLink
           onClick={(e) => (!name || !room ? e.preventDefault() : null)}
-          to={`/video?id=${name}&room=${room}`}
+          to={`/video?name=${name}&room=${room}`}
         >
           <StyledButton primary>Go video Chat</StyledButton>
         </NavLink>
       </StyledChat>
-      <StyledContainer who> <div>In {room} room:
-      {users && users.map((user)=>(`${user.name}, `))}
-        </div> 
+      <StyledContainer who>
+        {" "}
+        <div>
+          In {room} room:
+          {users && users.map((user) => `${user.name}, `)}
+        </div>
       </StyledContainer>
     </>
   );

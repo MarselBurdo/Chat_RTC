@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+// all styled components here
+
 export const StyledButton = styled.button`
   @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap"rel="stylesheet");
   box-shadow: inset 0px 1px 0px 0px #91e650;
